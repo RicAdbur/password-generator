@@ -10,25 +10,36 @@ var specialCharArray = specialCharString.split('');
 var userSelections = [];  // blank array to be filled with user choices
 var passLength = 8; // 8 is minimum value
 
-function generatePassword() {
-  passLength = parseInt(prompt("How many characters do you want your password to be? \n(Must be between 8 and 128 characters)"))
+function getPrompts() {
+  userSelections = []; // this ensures that whenever this function is called, the userSelections array will begin from an empty state
+  passLength = parseInt(prompt("How many characters do you want your password to be? \n(Must be between 8 and 128 characters)"));
 
   if (isNaN(passLength) || passLength < 8 || passLength > 128) {
     alert("Please choose an integer between 8 and 128.");
-    return false;
+    return false;  // prevents user from typing strings instead of numbers, or any numbers below 8 or above 128
   }
 
-  if (confirm("Do you want to include lower case letters?"))
+  if (confirm("Do you want to include lower case letters?")) {
     userSelections = userSelections.concat(lowerCaseArray);
+  }
 
-  if (confirm("Do you want to include upper case letters?"))
+  if (confirm("Do you want to include upper case letters?")) {
     userSelections = userSelections.concat(upperCaseArray);
+  }
 
-  if (confirm("Do you want to include numbers?"))
+  if (confirm("Do you want to include numbers?")) {
     userSelections = userSelections.concat(numArray);
+  }
 
-  if (confirm("Do you want to include special characters?"))
+  if (confirm("Do you want to include special characters?")) {
     userSelections = userSelections.concat(specialCharArray);
+  }
+
+    return true;
+}
+
+function generatePassword() {
+  var userPrompts = getPrompts(); // true or false value
 }
 
 

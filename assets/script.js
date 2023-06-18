@@ -8,14 +8,17 @@ var passLength = 0; // user's chosen password length
 
 
 function generatePassword() {
-  userSelections = []; // this ensures that whenever this function is called, the userSelections array will begin from an empty state
+  userSelections = []; // ensures that whenever this function is called, the userSelections array will begin from an empty state
   passLength = parseInt(prompt("How many characters do you want your password to be? \n(Must be between 8 and 128 characters)"));
 
+  // prevents user from typing strings instead of numbers, or any numbers below 8 or above 128
   if (isNaN(passLength) || passLength < 8 || passLength > 128) {
     alert("Please choose an integer between 8 and 128.");
-    return getPrompts();  // prevents user from typing strings instead of numbers, or any numbers below 8 or above 128
+    return generatePassword();
   }
 
+  // If statements that ask user to choose which types of characters will be included in the password
+  // character type arrays are merged into empty userSelections array after each choice
   if (confirm("Do you want to include lower case letters?")) {
     userSelections = userSelections.concat(lowerCaseArray);
   }
@@ -31,8 +34,10 @@ function generatePassword() {
   if (confirm("Do you want to include special characters?")) {
     userSelections = userSelections.concat(specialCharArray);
   }
+  
   console.log(userSelections)
 
+  // randomly picks characters from the final merged array
   var password = "";
   for (var i = 0; i < passLength; i++) {
     var randomIndex = userSelections[Math.floor(Math.random() * userSelections.length)];
@@ -40,7 +45,6 @@ function generatePassword() {
   }
   return password;
 }
-
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
@@ -56,4 +60,3 @@ function writePassword() {
   passwordText.value = password;
 
 }
-

@@ -8,15 +8,16 @@ var numArray = numString.split('');
 var specialCharString = "`~!@#$%^&*()<>{}[]|-_=+,.?/:;";
 var specialCharArray = specialCharString.split('');
 var userSelections = [];  // blank array to be filled with user choices
-var passLength = 8; // 8 is minimum value
+var passLength = 0;
 
-function getPrompts() {
+
+function generatePassword() {
   userSelections = []; // this ensures that whenever this function is called, the userSelections array will begin from an empty state
   passLength = parseInt(prompt("How many characters do you want your password to be? \n(Must be between 8 and 128 characters)"));
 
   if (isNaN(passLength) || passLength < 8 || passLength > 128) {
     alert("Please choose an integer between 8 and 128.");
-    return false;  // prevents user from typing strings instead of numbers, or any numbers below 8 or above 128
+    return getPrompts();  // prevents user from typing strings instead of numbers, or any numbers below 8 or above 128
   }
 
   if (confirm("Do you want to include lower case letters?")) {
@@ -34,37 +35,15 @@ function getPrompts() {
   if (confirm("Do you want to include special characters?")) {
     userSelections = userSelections.concat(specialCharArray);
   }
+  console.log(userSelections)
 
-    return true;
+  var password = "";
+  for (var i = 0; i < passLength; i++) {
+    var randomIndex = userSelections[Math.floor(Math.random() * userSelections.length)];
+    password += randomIndex
+  }
+  return password;
 }
-
-function generatePassword() {
-  var userPrompts = getPrompts(); // true or false value
-}
-
-
-// How long do you want password to be? (prompt)
-  // Store result in variable
-    // Do you want lower case? (Confirm)
-      // If yes
-        // merge lower case array into userSelections array
-      // If no
-        // Do nothing
-    // Do you want upper case? (Confirm)
-      // If yes
-        // merge upper case array into userSelections array
-      // If no
-        // Do nothing
-    // Do you want numbers? (Confirm)
-      // If yes
-        // merge numbers array into userSelections array
-      // If no
-        // Do nothing
-    // Do you want special characters? (confirm)
-      // If yes
-        // merge special characters array into userSelections array
-      // If no
-        // Do nothing
 
 
 // Get references to the #generate element

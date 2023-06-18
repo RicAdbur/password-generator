@@ -1,14 +1,10 @@
 // global variables
-var lowerString = "abcdefghijklmnopqrstuvwxyz"; // string containing all letters
-var lowerCaseArray = lowerString.split(''); // splits string into array
-var upperString = lowerString.toUpperCase(); // converts lower case to upper case
-var upperCaseArray = upperString.split('');
-var numString = "1234567890";
-var numArray = numString.split('');
-var specialCharString = "`~!@#$%^&*()<>{}[]|-_=+,.?/:;";
-var specialCharArray = specialCharString.split('');
+var lowerCaseArray = "abcdefghijklmnopqrstuvwxyz".split(''); // splits string into array
+var upperCaseArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split('');
+var numArray = "1234567890".split('');
+var specialCharArray = "`~!@#$%^&*()<>{}[]|-_=+,.?/:;".split('');
 var userSelections = [];  // blank array to be filled with user choices
-var passLength = 0;
+var passLength = 0; // user's chosen password length
 
 
 function generatePassword() {
